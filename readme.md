@@ -25,6 +25,7 @@
 
    **APP-FE:**
    - 3000
+3. Terhubung ke internet. Karena image akan pull dari repo docker saya(https://hub.docker.com/u/ffiuca).
 
 ## Cara Penggunaan:
 1. Clone repository ini:
