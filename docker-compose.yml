@@ -62,7 +62,7 @@ services:
       - lnk-net
   lnk-app-be:
     container_name: lnk-app-be
-    image: test_ptlnk_be:latest
+    image: ffiuca/test_ptlnk_be:latest
     restart: on-failure
     networks:
       - lnk-net
@@ -77,7 +77,7 @@ services:
       - lnk-mongo-database
   lnk-app-fe:
     container_name: lnk-app-fe
-    image: test_ptlnk_fe:latest
+    image: ffiuca/test_ptlnk_fe:latest
     restart: on-failure
     networks:
       - lnk-net
@@ -89,6 +89,16 @@ services:
       - "${PORT_FE}:3000"
     depends_on:
       - lnk-kong-api-gateway
+  lnk-kong-init:
+    container_name: lnk-kong-init
+    image: ffiuca/test_ptlnk_kong_init:latest
+    restart: on-failure
+    env_file:
+      - .env
+    depends_on :
+      - lnk-kong-api-gateway
+    networks:
+      - lnk-net
   lnk-curl:
     container_name: lnk-curl
     image: ffiuca/mycurl:latest

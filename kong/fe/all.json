@@ -1,0 +1,41 @@
+{
+    "sources": null,
+    "destinations": null,
+    "name": "all",
+    "methods": [
+      "GET",
+      "PUT",
+      "POST",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+      "HEAD",
+      "CONNECT",
+      "TRACE"
+    ],
+    "id": "100d998f-7e95-42c4-a49f-c309801ffc33",
+    "response_buffering": true,
+    "https_redirect_status_code": 426,
+    "strip_path": false,
+    "service": {
+      "id": "9a5b19b2-07e8-49cf-a166-ce404b6c6345"
+    },
+    "request_buffering": true,
+    "paths": [
+      "/"
+    ],
+    "path_handling": "v0",
+    "protocols": [
+      "http",
+      "https"
+    ],
+    "regex_priority": 0,
+    "hosts": [
+      "localhost",
+      "127.0.0.1"
+    ],
+    "snis": null,
+    "headers": null,
+    "preserve_host": false,
+    "tags": []
+  }

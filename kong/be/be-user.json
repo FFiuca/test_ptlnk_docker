@@ -1,0 +1,44 @@
+{
+    "sources": null,
+    "destinations": null,
+    "name": "be-user",
+    "methods": [
+      "GET",
+      "PUT",
+      "POST",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+      "HEAD",
+      "CONNECT",
+      "TRACE"
+    ],
+    "id": "319351e9-4bc4-4744-a066-2250b328dced",
+    "response_buffering": true,
+    "https_redirect_status_code": 426,
+    "strip_path": false,
+    "service": {
+      "id": "cb6630f5-a950-4cc9-a96d-813d450e0201"
+    },
+    "request_buffering": true,
+    "paths": [
+      "~/lnk/be/user(/.*)$"
+    ],
+    "path_handling": "v0",
+    "protocols": [
+      "http",
+      "https"
+    ],
+    "regex_priority": 0,
+    "hosts": [
+      "localhost",
+      "127.0.0.1"
+    ],
+    "snis": null,
+    "headers": null,
+    "preserve_host": false,
+    "tags": [
+      "be",
+      "user"
+    ]
+  }
