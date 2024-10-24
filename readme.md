@@ -39,6 +39,17 @@
     ```
 4. Buka browser anda dan akses `http://localhost:8000` untuk mengakses aplikasi Front-End (FE).
 
+## Daftar Repo
+### Docker Image :
+1. BackEnd aplikasi : https://hub.docker.com/r/ffiuca/test_ptlnk_be
+2. FrontEnd  aplikasi : https://hub.docker.com/r/ffiuca/test_ptlnk_fe
+3. Init konfigurasi Kong : https://hub.docker.com/r/ffiuca/test_ptlnk_kong_init
+### Github Project :
+1. Backend Aplikasi : https://github.com/FFiuca/test_ptlnk_be
+2. FrontEnd Aplikasi : https://github.com/FFiuca/test_ptlnk_fe
+3. Raw image init konfigurasi kong : https://github.com/FFiuca/test_ptlnk_docker
+
+
 # Overview
 
 ## Tech Stack:
