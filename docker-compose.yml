@@ -1,0 +1,107 @@
+version: '1'
+services:
+  lnk-kong-database:
+    container_name: lnk-kong-database
+    image: postgres:13
+    restart: on-failure
+    env_file:
+      - .env
+    networks:
+      - lnk-net
+    volumes:
+      - type: volume
+        source: lnk-kong-database-v
+        target: /var/lib/postgresql/data
+        read_only: false
+    ports:
+      - "5433:5432"
+  lnk-kong-api-gateway-init:
+    container_name: lnk-kong-api-gateway-init
+    image: kong/kong-gateway:3.8.0.0
+    restart: on-failure
+    command : kong migrations bootstrap
+    env_file:
+      - .env
+    networks:
+      - lnk-net
+    depends_on:
+      - lnk-kong-database
+  lnk-kong-api-gateway:
+    container_name: lnk-kong-api-gateway
+    image: kong/kong-gateway:3.8.0.0
+    restart: always
+    env_file:
+     - .env
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "8444:8444"
+      - "8002:8002"
+      - "8445:8445"
+      - "8003:8003"
+      - "8004:8004"
+    networks:
+      - lnk-net
+    depends_on:
+      - lnk-kong-database
+  lnk-mongo-database:
+    container_name: lnk-mongo-database
+    image: mongo:8.0.1
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - "${PORT_MONGO}:27017"
+    volumes:
+      - type: volume
+        source : lnk-mongo-database-v
+        target:  /data/db
+        read_only: false
+    networks:
+      - lnk-net
+  lnk-app-be:
+    container_name: lnk-app-be
+    image: test_ptlnk_be:latest
+    restart: on-failure
+    networks:
+      - lnk-net
+    env_file:
+      - .env
+    environment:
+      - PORT=${PORT_BE}
+    ports:
+      - "${PORT_BE}:${PORT_BE}"
+    depends_on:
+      - lnk-kong-api-gateway
+      - lnk-mongo-database
+  lnk-app-fe:
+    container_name: lnk-app-fe
+    image: test_ptlnk_fe:latest
+    restart: on-failure
+    networks:
+      - lnk-net
+    env_file:
+      - .env
+    environment:
+      - PORT=${PORT_FE}
+    ports:
+      - "${PORT_FE}:3000"
+    depends_on:
+      - lnk-kong-api-gateway
+  lnk-curl:
+    container_name: lnk-curl
+    image: ffiuca/mycurl:latest
+    networks:
+      - lnk-net
+
+volumes:
+  lnk-kong-database-v:
+    name: lnk-kong-database-v
+  lnk-mongo-database-v:
+    name: lnk-mongo-database-v
+
+networks:
+  lnk-net:
+    name: lnk-net
+    driver: bridge
